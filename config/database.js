@@ -1,0 +1,29 @@
+const sqlite3 = require('sqlite3').verbose();
+
+const db = new sqlite3.Database('./conference.db');
+
+db.serialize(() => {
+  db.run(`CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    login TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    full_name TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    email TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )`);
+
+  db.run(`CREATE TABLE IF NOT EXISTS bookings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    room TEXT NOT NULL,
+    conference_date TEXT NOT NULL,
+    payment TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'Новая',
+    review TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+  )`);
+});
+
+module.exports = db;

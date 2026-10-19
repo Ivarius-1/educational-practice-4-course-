@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Конференции.РФ</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo">Конференции<span>.РФ</span></div>
+  <nav>
+    <button onclick="showPage('home')">Главная</button>
+    <button onclick="showPage('login')">Войти</button>
+    <button onclick="showPage('register')">Регистрация</button>
+  </nav>
+</header>
+
+<main>
+<section id="home" class="page active">
+  <div class="hero">
+    <div>
+      <div class="badge">БРОНИРОВАНИЕ ПОМЕЩЕНИЙ</div>
+      <h1>Место для<br><span>вашей конференции</span></h1>
+      <p>Аудитории, коворкинги и кинозалы. Оставьте заявку — администратор подтвердит бронирование.</p>
+      <button class="primary" onclick="showPage('register')">Начать бронирование →</button>
+    </div>
+    <div class="hero-card">
+      <div class="room-icon">⌂</div>
+      <h3>Конференц-зал</h3>
+      <p>Современное пространство для деловых мероприятий.</p>
+      <div class="room-info">● До 120 человек &nbsp; ● Проектор</div>
+    </div>
+  </div>
+  <div class="features">
+    <div><b>01</b><h3>Выберите помещение</h3><p>Аудитория, коворкинг или кинозал.</p></div>
+    <div><b>02</b><h3>Оставьте заявку</h3><p>Укажите дату и способ оплаты.</p></div>
+    <div><b>03</b><h3>Получите подтверждение</h3><p>Администратор изменит статус заявки.</p></div>
+  </div>
+</section>
+
+<section id="register" class="page">
+  <div class="form-card">
+    <div class="form-head"><span>01 / 04</span><h2>Регистрация</h2><p>Создайте аккаунт для бронирования помещения.</p></div>
+    <form id="registerForm">
+      <label>Логин<input name="login" required></label>
+      <label>Пароль<input name="password" type="password" required></label>
+      <label>ФИО<input name="fullName" required></label>
+      <label>Телефон<input name="phone" placeholder="8(900)123-45-67" required></label>
+      <label>Email<input name="email" type="email" required></label>
+      <div id="registerMsg" class="message"></div>
+      <button class="primary">Создать пользователя</button>
+    </form>
+    <p class="switch">Уже зарегистрированы? <a onclick="showPage('login')">Войти</a></p>
+  </div>
+</section>
+
+<section id="login" class="page">
+  <div class="form-card small">
+    <div class="form-head"><span>02 / 04</span><h2>Авторизация</h2><p>Войдите в личный кабинет.</p></div>
+    <form id="loginForm">
+      <label>Логин<input name="login" required></label>
+      <label>Пароль<input name="password" type="password" required></label>
+      <div id="loginMsg" class="message"></div>
+      <button class="primary">Войти</button>
+    </form>
+    <p class="switch">Еще не зарегистрированы? <a onclick="showPage('register')">Регистрация</a></p>
+    <p class="admin-hint">Администратор: Conf2027 / Demo77</p>
+  </div>
+</section>
+
+<section id="dashboard" class="page">
+  <div class="section-head">
+    <div><span>ЛИЧНЫЙ КАБИНЕТ</span><h2>Мои заявки</h2></div>
+    <button class="primary" onclick="showPage('booking')">+ Новая заявка</button>
+  </div>
+  <div id="userBookings" class="cards"></div>
+</section>
+
+<section id="booking" class="page">
+  <div class="form-card">
+    <div class="form-head"><span>03 / 04</span><h2>Новая заявка</h2><p>Выберите помещение и дату проведения конференции.</p></div>
+    <form id="bookingForm">
+      <label>Помещение
+        <select name="room" required>
+          <option value="">Выберите помещение</option>
+          <option>Аудитория «Большая»</option>
+          <option>Коворкинг «Север»</option>
+          <option>Кинозал «Премьера»</option>
+        </select>
+      </label>
+      <label>Дата начала конференции<input name="conferenceDate" type="date" required></label>
+      <label>Способ оплаты
+        <select name="payment" required>
+          <option value="">Выберите способ</option>
+          <option>При очном посещении</option>
+          <option>Переводом по СБП</option>
+        </select>
+      </label>
+      <div id="bookingMsg" class="message"></div>
+      <button class="primary">Отправить заявку →</button>
+    </form>
+  </div>
+</section>
+
+<section id="admin" class="page">
+  <div class="section-head">
+    <div><span>ADMIN / CONTROL</span><h2>Панель администратора</h2></div>
+  </div>
+  <input id="adminSearch" class="search" placeholder="Поиск..." oninput="renderAdmin()">
+  <div id="adminBookings" class="admin-table"></div>
+</section>
+</main>
+
+<footer>© 2027 Конференции.РФ</footer>
+<script src="/app.js"></script>
+</body>
+</html>
